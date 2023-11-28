@@ -9,10 +9,14 @@ import { ParqueaderoContext } from "../../context/ParqueaderoContext";
 const Ingreso = ({ element }) => {
   const { celdasCarro, celdasMoto, handlerCeldasMoto, handlerCeldasCarro } =
     useContext(ParqueaderoContext);
-    const [campo, setCampo] = useState("")
+  const [campo, setCampo] = useState("");
   const handlerCampo = (e) => {
     let campo = e.target.value;
     setCampo(campo);
+    const elementoConFecha = {
+      ...element,
+      date: new Date().toISOString(), // Agrega la fecha y hora actual en formato ISO
+    };
     if (element.cilindraje) {
       let celdas = [...celdasMoto];
       const indiceAnterior = celdas.findIndex(
@@ -24,7 +28,7 @@ const Ingreso = ({ element }) => {
       if (indiceAnterior !== -1) {
         celdas[indiceAnterior] = null;
       }
-      celdas[campo] = element;
+      celdas[campo] = elementoConFecha;
       handlerCeldasMoto(celdas);
       setCampo("");
     } else {
@@ -38,7 +42,7 @@ const Ingreso = ({ element }) => {
       if (indiceAnterior !== -1) {
         celdas[indiceAnterior] = null;
       }
-      celdas[campo] = element;
+      celdas[campo] = elementoConFecha;
       handlerCeldasCarro(celdas);
       setCampo("");
     }

@@ -11,7 +11,7 @@ const List = ({ element }) => {
 
   if (element === null) {
     return (
-      <Card sx={{ width: 275, height: 300 }}>
+      <Card sx={{ width: 275, height: 350 }}>
         <CardContent>
           <Typography variant="h5" component="div">
             Vacio
@@ -83,7 +83,7 @@ const List = ({ element }) => {
 
   return (
     <>
-      <Card sx={{ width: 275, height: 300 }}>
+      <Card sx={{ width: 275, height: 350 }}>
         <CardContent>
           <Typography variant="h5" component="div">
             {element.cilindraje ? "Moto" : "Carro"}
@@ -106,6 +106,9 @@ const List = ({ element }) => {
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
             Celda actual: {getCelda() !== -1 ? getCelda() + 1 : "Sin asignar"}
+          </Typography>
+          <Typography sx={{ mb: 1.5 }} color="text.secondary">
+            Fecha: {element.date ? new Date(element.date).toLocaleString() : ""}
           </Typography>
           <Actions element={element} getCelda={getCelda} />
         </CardContent>
